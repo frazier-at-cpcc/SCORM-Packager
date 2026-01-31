@@ -200,7 +200,8 @@ window.onbeforeunload = function() {
 };'''
 
 def generate_html(course_title: str, course_url: str, primary_color: str,
-                  expected_duration: int, require_min_time: bool, min_time_minutes: int) -> str:
+                  expected_duration: int, require_min_time: bool, min_time_minutes: int,
+                  subtitle: str = "", additional_info: str = "") -> str:
     """Generate index.html content with time tracking."""
 
     # Convert hex color to RGB for gradient
@@ -284,8 +285,28 @@ def generate_html(course_title: str, course_url: str, primary_color: str,
         .subtitle {{
             color: #718096;
             font-size: 16px;
-            margin-bottom: 35px;
+            margin-bottom: 20px;
             line-height: 1.6;
+        }}
+
+        .additional-info {{
+            background: #f7fafc;
+            border-left: 4px solid {primary_color};
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+            text-align: left;
+            color: #2d3748;
+            font-size: 14px;
+            line-height: 1.8;
+        }}
+
+        .additional-info p {{
+            margin: 0 0 10px 0;
+        }}
+
+        .additional-info p:last-child {{
+            margin-bottom: 0;
         }}
 
         .btn {{
@@ -481,7 +502,8 @@ def generate_html(course_title: str, course_url: str, primary_color: str,
         <div class="card">
             <div class="logo">📚</div>
             <h1>{course_title}</h1>
-            <p class="subtitle">External Course with Time Tracking</p>
+            <p class="subtitle">{subtitle if subtitle else 'External Course with Time Tracking'}</p>
+            {f'<div class="additional-info">{additional_info}</div>' if additional_info else ''}
 
             <div class="status-grid">
                 <div class="status-box">
@@ -751,7 +773,8 @@ def generate_html(course_title: str, course_url: str, primary_color: str,
 
 def create_scorm_package(course_title: str, course_url: str, primary_color: str,
                          mastery_score: int, expected_duration: int,
-                         require_min_time: bool, min_time_minutes: int) -> bytes:
+                         require_min_time: bool, min_time_minutes: int,
+                         subtitle: str = "", additional_info: str = "") -> bytes:
     """Create a SCORM 1.2 package as a ZIP file in memory."""
 
     course_id = sanitize_filename(course_title)
@@ -770,7 +793,8 @@ def create_scorm_package(course_title: str, course_url: str, primary_color: str,
 
         # Add HTML
         html = generate_html(course_title, course_url, primary_color,
-                            expected_duration, require_min_time, min_time_minutes)
+                            expected_duration, require_min_time, min_time_minutes,
+                            subtitle, additional_info)
         zip_file.writestr('index.html', html)
 
     zip_buffer.seek(0)
@@ -793,6 +817,19 @@ course_title = st.text_input(
     "Course Title",
     placeholder="e.g., Selling the Message®",
     help="The name that will appear in your LMS"
+)
+
+subtitle = st.text_input(
+    "Subtitle (Optional)",
+    placeholder="e.g., External Course with Time Tracking",
+    help="A brief description that appears below the title"
+)
+
+additional_info = st.text_area(
+    "Additional Information (Optional)",
+    placeholder="Add any additional details, instructions, or information you want to display...",
+    help="This will appear in a highlighted box on the course page. Supports line breaks.",
+    height=100
 )
 
 course_url = st.text_input(
@@ -883,7 +920,9 @@ if st.button("🚀 Generate SCORM Package", type="primary", use_container_width=
                     mastery_score=mastery_score,
                     expected_duration=expected_duration,
                     require_min_time=require_min_time,
-                    min_time_minutes=min_time_minutes
+                    min_time_minutes=min_time_minutes,
+                    subtitle=subtitle.strip(),
+                    additional_info=additional_info.strip()
                 )
 
                 filename = f"{sanitize_filename(course_title)}_SCORM.zip"
