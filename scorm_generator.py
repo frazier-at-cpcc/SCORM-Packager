@@ -239,8 +239,8 @@ def generate_html(course_title: str, course_url: str, primary_color: str,
         html, body {{
             width: 100%;
             height: 100%;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: linear-gradient(135deg, {primary_color} 0%, {darker} 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #f5f5f7;
         }}
 
         .container {{
@@ -249,56 +249,64 @@ def generate_html(course_title: str, course_url: str, primary_color: str,
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 40px 20px;
         }}
 
         .card {{
             background: white;
-            border-radius: 16px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            padding: 50px;
-            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 48px;
+            max-width: 700px;
             width: 100%;
             text-align: center;
+            border-top: 4px solid {primary_color};
         }}
 
         .logo {{
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, {primary_color} 0%, {darker} 100%);
-            border-radius: 20px;
+            width: 60px;
+            height: 60px;
+            background: {primary_color};
+            border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 30px;
-            font-size: 36px;
-            color: white;
+            margin: 0 auto 24px;
+        }}
+
+        .logo svg {{
+            width: 32px;
+            height: 32px;
+            fill: white;
         }}
 
         h1 {{
-            color: #1a202c;
-            font-size: 28px;
-            margin-bottom: 15px;
+            color: #1a1a1a;
+            font-size: 26px;
+            margin-bottom: 12px;
             font-weight: 600;
+            letter-spacing: -0.02em;
         }}
 
         .subtitle {{
-            color: #718096;
-            font-size: 16px;
+            color: #666666;
+            font-size: 15px;
             margin-bottom: 20px;
-            line-height: 1.6;
+            line-height: 1.5;
+            font-weight: 400;
         }}
 
         .additional-info {{
-            background: #f7fafc;
-            border-left: 4px solid {primary_color};
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 25px;
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-left: 3px solid {primary_color};
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 28px;
             text-align: left;
-            color: #2d3748;
-            font-size: 14px;
-            line-height: 1.8;
+            color: #333333;
+            font-size: 13px;
+            line-height: 1.7;
         }}
 
         .additional-info p {{
@@ -311,124 +319,130 @@ def generate_html(course_title: str, course_url: str, primary_color: str,
 
         .btn {{
             display: inline-block;
-            padding: 16px 40px;
+            padding: 12px 28px;
             border: none;
-            border-radius: 8px;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
+            font-size: 14px;
+            font-weight: 500;
             text-decoration: none;
-            transition: all 0.3s ease;
-            margin: 8px;
+            transition: all 0.2s ease;
+            margin: 6px;
+            letter-spacing: 0.01em;
         }}
 
         .btn-primary {{
-            background: linear-gradient(135deg, {primary_color} 0%, {darker} 100%);
+            background: {primary_color};
             color: white;
         }}
 
         .btn-primary:hover {{
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            background: {darker};
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
         }}
 
         .btn-success {{
-            background: #48bb78;
+            background: #00B06B;
             color: white;
         }}
 
         .btn-success:hover {{
-            background: #38a169;
-            transform: translateY(-2px);
+            background: #009959;
         }}
 
         .btn-success:disabled {{
-            background: #a0aec0;
+            background: #cccccc;
             cursor: not-allowed;
-            transform: none;
         }}
 
         .btn-secondary {{
-            background: #e2e8f0;
-            color: #4a5568;
+            background: #ffffff;
+            color: #333333;
+            border: 1px solid #d1d1d1;
         }}
 
         .btn-secondary:hover {{
-            background: #cbd5e0;
+            background: #f5f5f5;
+            border-color: #b3b3b3;
         }}
 
         .status-grid {{
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 30px 0;
+            gap: 16px;
+            margin: 32px 0;
         }}
 
         .status-box {{
-            background: #f7fafc;
-            border-radius: 8px;
+            background: #fafafa;
+            border-radius: 4px;
             padding: 20px;
-            border-left: 4px solid {primary_color};
+            border: 1px solid #e5e5e5;
+            border-left: 3px solid {primary_color};
         }}
 
         .status-box.time {{
-            border-left-color: #ed8936;
+            border-left-color: #FF9500;
         }}
 
         .status-box.total-time {{
-            border-left-color: #38b2ac;
+            border-left-color: #00B06B;
         }}
 
         .status-label {{
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #718096;
-            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+            color: #888888;
+            margin-bottom: 8px;
+            font-weight: 500;
         }}
 
         .status-value {{
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
-            color: #2d3748;
+            color: #1a1a1a;
         }}
 
         .status-value.completed {{
-            color: #48bb78;
+            color: #00B06B;
         }}
 
         .time-display {{
             font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
-            font-size: 24px;
-            color: #ed8936;
+            font-size: 20px;
+            color: #FF9500;
+            font-weight: 500;
         }}
 
         .total-time-display {{
             font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
-            font-size: 24px;
-            color: #38b2ac;
+            font-size: 20px;
+            color: #00B06B;
+            font-weight: 500;
         }}
 
         .instructions {{
-            background: #fffbeb;
-            border: 1px solid #f6e05e;
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 25px;
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 24px;
+            margin-top: 28px;
             text-align: left;
         }}
 
         .instructions h3 {{
-            color: #975a16;
+            color: #1a1a1a;
             font-size: 14px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            font-weight: 600;
         }}
 
         .instructions ol {{
-            color: #744210;
-            font-size: 14px;
+            color: #4d4d4d;
+            font-size: 13px;
             padding-left: 20px;
-            line-height: 1.8;
+            line-height: 1.7;
         }}
 
         .button-group {{
@@ -448,51 +462,51 @@ def generate_html(course_title: str, course_url: str, primary_color: str,
         }}
 
         .timer-notice {{
-            background: #ebf8ff;
-            border: 1px solid #90cdf4;
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 20px;
-            font-size: 14px;
-            color: #2b6cb0;
+            background: #f0f4ff;
+            border: 1px solid #d0d9f5;
+            border-radius: 4px;
+            padding: 16px;
+            margin-top: 24px;
+            font-size: 13px;
+            color: #334155;
         }}
 
         .timer-active {{
             display: inline-block;
-            width: 10px;
-            height: 10px;
-            background: #48bb78;
+            width: 8px;
+            height: 8px;
+            background: #00B06B;
             border-radius: 50%;
             margin-right: 8px;
-            animation: pulse 1.5s infinite;
+            animation: pulse 2s infinite;
         }}
 
         .timer-paused {{
             display: inline-block;
-            width: 10px;
-            height: 10px;
-            background: #ed8936;
+            width: 8px;
+            height: 8px;
+            background: #FF9500;
             border-radius: 50%;
             margin-right: 8px;
         }}
 
         @keyframes pulse {{
             0%, 100% {{ opacity: 1; }}
-            50% {{ opacity: 0.5; }}
+            50% {{ opacity: 0.4; }}
         }}
 
         .progress-bar-container {{
-            background: #e2e8f0;
-            border-radius: 10px;
-            height: 8px;
-            margin-top: 10px;
+            background: #e5e5e5;
+            border-radius: 2px;
+            height: 6px;
+            margin-top: 12px;
             overflow: hidden;
         }}
 
         .progress-bar {{
-            background: linear-gradient(135deg, {primary_color} 0%, {darker} 100%);
+            background: {primary_color};
             height: 100%;
-            border-radius: 10px;
+            border-radius: 2px;
             transition: width 0.5s ease;
         }}
     </style>
@@ -500,7 +514,11 @@ def generate_html(course_title: str, course_url: str, primary_color: str,
 <body>
     <div class="container">
         <div class="card">
-            <div class="logo">📚</div>
+            <div class="logo">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L4 6v6c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V6l-8-4zm0 2.18l6 3v4.82c0 4.52-2.98 8.69-6 9.88-3.02-1.19-6-5.36-6-9.88V7.18l6-3z"/>
+                </svg>
+            </div>
             <h1>{course_title}</h1>
             <p class="subtitle">{subtitle if subtitle else 'External Course with Time Tracking'}</p>
             {f'<div class="additional-info">{additional_info}</div>' if additional_info else ''}
@@ -846,8 +864,8 @@ col1, col2 = st.columns(2)
 with col1:
     primary_color = st.color_picker(
         "Primary Color",
-        value="#667eea",
-        help="Main color for buttons and accents"
+        value="#5F2EEA",
+        help="Main color for buttons and accents (SentinelOne purple by default)"
     )
 
 with col2:
